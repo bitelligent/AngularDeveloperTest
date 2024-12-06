@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "note": "Met with the client",
+      "noteType": 1,
+      "user": "Milton Romaguera",
+      "createdAt": "2024-12-05T14:23:00.000Z",
+      "isdeleted": false
+    },
+    {
+      "id": 2,
+      "note": "Met with the client",
+      "noteType": 2,
+      "user": "Milton Romaguera",
+      "createdAt": "2024-12-05T14:23:00.000Z",
+      "isdeleted": false
+    },
+    {
+      "id": 3,
+      "note": "Met with the client",
+      "noteType": 3,
+      "user": "Milton Romaguera",
+      "createdAt": "2024-12-05T14:23:00.000Z",
+      "isdeleted": false
+    },
+    {
+      "id": 4,
+      "note": "Met with the client",
+      "noteType": 4,
+      "user": "Milton Romaguera",
+      "createdAt": "2024-12-03T14:23:00.000Z",
+      "isdeleted": false
+    },
+    {
+      "id": 5,
+      "note": "Met with the client",
+      "noteType": 5,
+      "user": "Milton Romaguera",
+      "createdAt": "2024-12-05T14:23:00.000Z",
+      "isdeleted": false
+    }
+  ]
+  
