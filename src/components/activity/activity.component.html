@@ -1,0 +1,131 @@
+<div class="absolute linew top-[50%] w-[90%] h-[2px] bg-gray-400 z-0 rotate-90"></div>
+
+
+<div class="flex w-full px-8 pt-8 pb-4">
+
+    <div class="ml-8  z-10">
+
+        <div class="p-8">
+            <div
+                class="p-2.5 rounded-full border-gray-300 border bg-white flex items-center justify-center cursor-pointer text-gray-400 ">
+                <i-tabler name="menu-deep"></i-tabler>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="flex-grow">
+        <form [formGroup]="noteFrom">
+            <div class="w-full bg-gray-100 p-8 rounded-lg">
+                <textarea rows="3" pInputTextarea placeholder="Add a note about Milton Romaguera" formControlName="note"
+                    class="w-full" (click)="noteActiveToogle()"></textarea>
+            </div>
+
+            <div class="w-full flex bg-gray-100 px-8 pb-5" *ngIf="noteActive == true" [@fadeIn]>
+                <div class="flex gap-8 ml-2">
+
+                    <div (click)="selectNote(1)"
+                        [ngClass]="noteType == 1 ? 'bg-blue-400 text-white' : 'bg-white text-gray-400 '"
+                        class="p-2.5 rounded-full border-gray-300 border flex items-center justify-center cursor-pointer hover:bg-blue-400 text-gray-400 hover:text-white">
+                        <i-tabler name="message-circle"></i-tabler>
+                    </div>
+
+                    <div (click)="selectNote(2)"
+                        [ngClass]="noteType == 2 ? 'bg-blue-400 text-white' : 'bg-white text-gray-400 '"
+                        class="p-2.5 rounded-full border-gray-300 border  flex items-center justify-center cursor-pointer hover:bg-blue-400 text-gray-400 hover:text-white">
+                        <i-tabler name="phone"></i-tabler>
+                    </div>
+
+                    <div (click)="selectNote(3)"
+                        [ngClass]="noteType == 3 ? 'bg-blue-400 text-white' : 'bg-white text-gray-400 '"
+                        class="p-2.5 rounded-full border-gray-300 border flex items-center justify-center cursor-pointer hover:bg-blue-400 text-gray-400 hover:text-white">
+                        <i-tabler name="mug"></i-tabler>
+                    </div>
+
+                    <div (click)="selectNote(4)"
+                        [ngClass]="noteType == 4 ? 'bg-blue-400 text-white' : 'bg-white text-gray-400 '"
+                        class="p-2.5 rounded-full border-gray-300 border  flex items-center justify-center cursor-pointer hover:bg-blue-400 text-gray-400 hover:text-white">
+                        <i-tabler name="beer"></i-tabler>
+                    </div>
+
+                    <div (click)="selectNote(5)"
+                        [ngClass]="noteType == 5 ? 'bg-blue-400 text-white' : 'bg-white text-gray-400 '"
+                        class="p-2.5 rounded-full border-gray-300 border  flex items-center justify-center cursor-pointer hover:bg-blue-400 text-gray-400 hover:text-white">
+                        <i-tabler name="user"></i-tabler>
+                    </div>
+                </div>
+
+                <div class="ml-auto">
+                    <button pButton label="Submit" type="submit" class="p-button-success" (click)="onSubmit()">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<div class="flex w-full px-8" *ngFor="let val of data" >
+
+    <div class=" py-6  z-10" >
+        <div class="px-8 py-4">
+            <div class="flex gap-4">
+                <div class="mt-3">
+                    {{ getDaysAgo(val.createdAt) }}
+                </div>
+                <div>
+                    <div *ngIf="val.noteType == 1"
+                        class="p-2.5 rounded-full border-gray-300 border bg-white flex items-center justify-center cursor-pointer text-gray-400">
+                        <i-tabler name="message-circle"></i-tabler>
+                    </div>
+                    <div *ngIf="val.noteType == 2"
+                        class="p-2.5 rounded-full border-gray-300 border bg-white flex items-center justify-center cursor-pointer text-gray-400">
+                        <i-tabler name="phone"></i-tabler>
+                    </div>
+                    <div *ngIf="val.noteType == 3"
+                        class="p-2.5 rounded-full border-gray-300 border bg-white flex items-center justify-center cursor-pointer text-gray-400">
+                        <i-tabler name="mug"></i-tabler>
+                    </div>
+                    <div *ngIf="val.noteType == 4"
+                        class="p-2.5 rounded-full border-gray-300 border bg-white flex items-center justify-center cursor-pointer text-gray-400">
+                        <i-tabler name="beer"></i-tabler>
+                    </div>
+                    <div *ngIf="val.noteType == 5"
+                        class="p-2.5 rounded-full border-gray-300 border bg-white flex items-center justify-center cursor-pointer text-gray-400">
+                        <i-tabler name="user"></i-tabler>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-grow" (mouseenter)="hoveredItemId = val.id" >
+        <div class="w-full bg-gray-100 px-8 py-8 rounded-lg">
+            <div class="flex">
+                <div>
+                    <div>
+                        <strong>
+                            <span class="text-blue-400">You</span>&nbsp;
+                            <span>{{typeval(val.noteType - 1)}}</span>&nbsp;
+                            <span class="text-blue-400">{{val.user}}</span>
+                        </strong>
+                    </div>
+                    <div>
+                        <span class="text-gray-400">{{val.note}}</span>
+                    </div>
+                </div>
+                <div class="ml-auto" *ngIf="hoveredItemId === val.id">
+                    <p-button (onClick)="togglePanel(op, $event)" icon="pi pi-sort-down-fill" [rounded]="true"/>
+                    <p-overlayPanel #op>
+                        <div class="flex flex-column gap-3 w-25rem cursor-pointer" (click)="deleterec(val.id)">
+                           Delete 
+                        </div>
+                    </p-overlayPanel>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
